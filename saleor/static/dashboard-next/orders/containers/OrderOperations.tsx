@@ -59,7 +59,7 @@ interface OrderOperationsProps extends MutationProviderProps {
       OrderUpdateVariables
     >;
   }>;
-  onFulfillmentCreate: (data: OrderCreateFulfillmentMutation) => void;
+  onOrderFulfillmentCreate: (data: OrderCreateFulfillmentMutation) => void;
   onOrderCancel: (data: OrderCancel) => void;
   onOrderRelease: (data: OrderReleaseMutation) => void;
   onNoteAdd: (data: OrderAddNote) => void;
@@ -72,7 +72,7 @@ const OrderOperations: React.StatelessComponent<OrderOperationsProps> = ({
   children,
   order,
   onError,
-  onFulfillmentCreate,
+  onOrderFulfillmentCreate,
   onNoteAdd,
   onOrderCancel,
   onOrderRelease,
@@ -99,7 +99,7 @@ const OrderOperations: React.StatelessComponent<OrderOperationsProps> = ({
                   <OrderCreateFulfillmentProvider
                     id={order}
                     onError={onError}
-                    onSuccess={onFulfillmentCreate}
+                    onSuccess={onOrderFulfillmentCreate}
                   >
                     {createFulfillment => (
                       <OrderNoteAddProvider
@@ -116,8 +116,8 @@ const OrderOperations: React.StatelessComponent<OrderOperationsProps> = ({
                                 errors: [
                                   ...maybe(
                                     () =>
-                                      createFulfillment.data.fulfillmentCreate
-                                        .errors,
+                                      createFulfillment.data
+                                        .OrderFulfillmentCreate.errors,
                                     []
                                   ),
                                   ...maybe(

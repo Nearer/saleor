@@ -412,7 +412,7 @@ class OrderDetailsPageComponent extends React.Component<
                             )}
                             status={fulfillment.status}
                             trackingCode={fulfillment.trackingNumber}
-                            onFulfillmentCancel={toggleCancelDialog}
+                            onOrderFulfillmentCancel={toggleCancelDialog}
                             onTrackingCodeAdd={toggleTrackingDialog}
                             onPackingSlipClick={
                               onPackingSlipClick
